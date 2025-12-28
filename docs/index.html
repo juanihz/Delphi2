@@ -136,9 +136,11 @@
             display: flex;
             align-items: center;
             padding-top: 150px;
+            position: relative; /* Para posicionar el logo grande */
+            overflow: hidden; /* Para que el logo grande no desborde */
         }
 
-        .hero-content { flex: 1; max-width: 650px; }
+        .hero-content { flex: 1; max-width: 650px; z-index: 2; }
 
         h1.hero-title {
             font-size: 4.5rem;
@@ -179,6 +181,27 @@
             border-color: var(--accent-cyan);
             box-shadow: 0 0 40px rgba(0, 229, 255, 0.6);
         }
+
+        /* Elemento visual a la derecha (Logo grande decorativo) */
+        .hero-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute; /* Posicionamiento absoluto */
+            right: -100px; /* Ajustar posición horizontal */
+            top: 50%; /* Centrar verticalmente */
+            transform: translateY(-50%); /* Corregir centrado vertical */
+            z-index: 1; /* Detrás del contenido */
+        }
+        /* Versión gigante del logo para el hero */
+        .hero-logo-big {
+            width: 800px; /* Tamaño grande */
+            height: auto;
+            opacity: 0.6; /* Ligeramente transparente */
+            transform: rotate(15deg); /* Rotación decorativa */
+        }
+
 
         /* --- SECTIONS --- */
         .section-header { margin-bottom: 70px; }
@@ -261,6 +284,7 @@
             nav ul { display: none; }
             section { padding: 80px 5%; }
             .logo-container { font-size: 1.2rem; }
+            .hero-visual { display: none; /* Ocultar el gráfico grande en móvil para espacio */ }
         }
     </style>
 </head>
@@ -300,7 +324,11 @@
             <a href="#contact" class="glow-button" data-lang="es">NUESTRO ENFOQUE</a>
             <a href="#contact" class="glow-button" data-lang="en">OUR APPROACH</a>
         </div>
-        </section>
+        
+        <div class="hero-visual">
+             <img src="logo.png" alt="DELPHI Logo Big" class="hero-logo-big">
+        </div>
+    </section>
 
     <section id="team">
         <div class="section-header">
@@ -336,9 +364,6 @@
             <div class="team-card">
                 <h3 data-lang="es">Arquitectura Financiera</h3>
                 <h3 data-lang="en">Financial Architecture</h3>
-                <p data-lang="es">
-                    Liderado por un Ingeniero Industrial experto en Finanzas. Transformamos datos en claridad, optimizando tesorería, modelando flujos de caja y analizando la viabilidad profunda del negocio.
-                </p>
                 <p data-lang="en">
                     Led by an Industrial Engineer expert in Finance. We transform data into clarity, optimizing treasury, modeling cash flows, and analyzing deep business viability.
                 </p>
