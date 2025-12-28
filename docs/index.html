@@ -3,40 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DELPHI | Strategic Consulting & Wealth Management</title>
-    <meta name="description" content="Consultoría estratégica, gestión de fondos y PMO. Soluciones complejas mediante ingeniería financiera y rigor legal.">
+    <title>DELPHI | Strategy. Structure. Ascension.</title>
+    <meta name="description" content="Consultoría estratégica, gestión de fondos y PMO. Ingeniería financiera y rigor legal para problemas complejos.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
 
     <style>
-        /* --- VARIABLES & RESET --- */
+        /* --- VARIABLES & ESTÉTICA BASADA EN LA IMAGEN --- */
         :root {
-            --bg-color: #121212;
-            --surface-color: #1e1e1e;
+            --bg-dark: #0a0a0f; /* Fondo muy oscuro, casi negro */
+            --bg-surface: #14141a; /* Superficies ligeramente más claras */
             --text-primary: #ffffff;
-            --text-secondary: #b0b0b0;
-            --accent-cyan: #00E5FF; /* Vision/Tech */
-            --accent-gold: #FF8C00; /* Value/Human */
-            --font-main: 'Inter', sans-serif;
+            --text-secondary: #a0a0b0; /* Gris claro para texto secundario */
+            
+            /* Los colores exactos del logo en la imagen */
+            --accent-cyan: #00E5FF; 
+            --accent-orange: #FF8C00;
+            
+            --font-title: 'Montserrat', sans-serif;
+            --font-body: 'Inter', sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: var(--font-main);
-            background-color: var(--bg-color);
+            font-family: var(--font-body);
+            /* Fondo complejo simulando la iluminación de la imagen */
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 229, 255, 0.1) 0%, transparent 40%), /* Luz cian izquierda */
+                radial-gradient(circle at 90% 80%, rgba(255, 140, 0, 0.08) 0%, transparent 40%); /* Luz naranja derecha */
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
+        /* Títulos en mayúsculas como en la imagen */
+        h1, h2, h3, h4 {
+            font-family: var(--font-title);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 800;
+        }
+
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
+        section { padding: 100px 10%; }
 
-        /* --- UTILITIES FOR LANGUAGE --- */
-        /* Por defecto mostramos español, ocultamos inglés. JS cambiará esto */
+        /* --- UTILIDADES DE IDIOMA --- */
         body.lang-es [data-lang="en"] { display: none !important; }
         body.lang-en [data-lang="es"] { display: none !important; }
 
@@ -45,353 +62,367 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 20px 5%;
+            padding: 25px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(18, 18, 18, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 15, 0.8); /* Fondo semitransparente */
+            backdrop-filter: blur(15px);
             z-index: 1000;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        .logo {
-            font-weight: 800;
-            font-size: 1.5rem;
-            letter-spacing: 2px;
-            color: var(--text-primary);
+        .logo-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            font-family: var(--font-title);
+            font-weight: 800;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
         }
 
-        /* Simulación del Logo Triángulo (CSS Puro) */
-        .logo-icon {
-            width: 0; 
-            height: 0; 
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-bottom: 20px solid var(--accent-cyan);
+        /* Recreación CSS del logo triangular brillante de la imagen */
+        .logo-triangle {
+            width: 0; height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-bottom: 20px solid var(--accent-cyan); /* Base cian */
             position: relative;
+            /* Efecto de brillo (Glow) */
+            filter: drop-shadow(0 0 8px var(--accent-cyan));
         }
-        .logo-icon::after {
-            content: '';
-            position: absolute;
-            top: 6px;
-            left: -10px;
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-bottom: 20px solid var(--accent-gold);
-            opacity: 0.7;
+        .logo-triangle::after {
+            content: ''; position: absolute; top: 6px; left: -12px;
+            width: 0; height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            /* Capa naranja superpuesta con mezcla de color */
+            border-bottom: 20px solid var(--accent-orange);
             mix-blend-mode: screen;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 8px var(--accent-orange));
         }
 
-        nav ul { display: flex; gap: 30px; }
-        nav a { font-size: 0.9rem; font-weight: 400; color: var(--text-secondary); }
+        nav ul { display: flex; gap: 30px; align-items: center; }
+        nav a { 
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            color: var(--text-primary); 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
         nav a:hover { color: var(--accent-cyan); }
 
         .lang-switch {
-            border: 1px solid var(--text-secondary);
-            padding: 5px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.8rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 6px 16px;
+            font-size: 0.75rem;
             text-transform: uppercase;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
         }
-        .lang-switch:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+        .lang-switch:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+        }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO SECTION (Basada en la imagen de la laptop) --- */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 0 10%;
-            background: radial-gradient(circle at top right, rgba(0, 229, 255, 0.05), transparent 40%),
-                        radial-gradient(circle at bottom left, rgba(255, 140, 0, 0.05), transparent 40%);
+            align-items: center;
+            padding-top: 120px; /* Espacio para el header fijo */
+            position: relative;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
+        .hero-content { flex: 1; max-width: 600px; z-index: 2; }
+
+        h1.hero-title {
+            font-size: 4rem;
             line-height: 1.1;
             margin-bottom: 20px;
-            background: linear-gradient(to right, #fff, #b0b0b0);
+            /* Degradado sutil en el texto blanco */
+            background: linear-gradient(to right, #ffffff, #d0d0d0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero p {
-            font-size: 1.2rem;
+        .hero-subtitle {
+            font-size: 1.3rem;
             color: var(--text-secondary);
-            max-width: 600px;
             margin-bottom: 40px;
+            font-weight: 300;
         }
 
-        .cta-button {
-            padding: 15px 40px;
+        /* Botón brillante como en la imagen */
+        .glow-button {
+            display: inline-block;
+            padding: 15px 35px;
             background: transparent;
-            border: 1px solid var(--accent-cyan);
-            color: var(--accent-cyan);
-            font-weight: 600;
+            border: 2px solid var(--accent-cyan);
+            color: var(--text-primary);
+            font-family: var(--font-title);
+            font-weight: 700;
+            text-transform: uppercase;
             letter-spacing: 1px;
-            text-transform: uppercase;
             position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-button:hover {
-            background: var(--accent-cyan);
-            color: #000;
-            box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
-        }
-
-        /* --- TEAM / EXPERTISE SECTION --- */
-        .section { padding: 100px 10%; border-top: 1px solid rgba(255,255,255,0.05); }
-        
-        .section-title {
-            font-size: 0.9rem;
-            color: var(--accent-gold);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .expertise-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
-        }
-
-        .profile-card {
-            background: var(--surface-color);
-            padding: 40px;
-            border-left: 2px solid transparent;
             transition: 0.3s;
         }
 
-        .profile-card:hover { border-left: 2px solid var(--accent-gold); transform: translateY(-5px); }
+        .glow-button:hover {
+            background: rgba(0, 229, 255, 0.1);
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.4);
+        }
 
-        .profile-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
-        .profile-card p { color: var(--text-secondary); font-size: 0.95rem; }
+        /* Elemento visual decorativo a la derecha (el logo grande) */
+        .hero-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        /* Versión gigante del logo para el hero */
+        .hero-logo-big {
+            transform: scale(5); /* Hacemos el logo CSS 5 veces más grande */
+            opacity: 0.8;
+        }
+
+
+        /* --- SECTIONS GENERAL STYLES --- */
+        .section-header { margin-bottom: 60px; }
+        .section-label {
+            color: var(--accent-orange);
+            font-family: var(--font-title);
+            font-weight: 700;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+        h2.section-heading { font-size: 2.5rem; }
+
+        /* --- TEAM SECTION --- */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .team-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 40px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Efecto hover sutil */
+        .team-card:hover {
+            border-color: var(--accent-orange);
+            background: rgba(255, 140, 0, 0.02);
+        }
+        
+        .team-card h3 { margin-bottom: 15px; font-size: 1.3rem; }
+        .team-card p { color: var(--text-secondary); font-size: 0.95rem; }
 
         /* --- SERVICES SECTION --- */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
         }
 
         .service-item {
-            border: 1px solid rgba(255,255,255,0.1);
             padding: 30px;
+            border-top: 2px solid rgba(255,255,255,0.1);
             transition: 0.3s;
         }
-
-        .service-item:hover { border-color: var(--accent-cyan); background: rgba(0, 229, 255, 0.02); }
-        
-        .icon { font-size: 2rem; margin-bottom: 20px; color: var(--accent-cyan); }
-        
-        .service-item h4 { margin-bottom: 10px; font-weight: 600; }
-        .service-item p { font-size: 0.9rem; color: var(--text-secondary); }
-
-        /* --- CONTACT --- */
-        .contact-box {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto;
+        .service-item:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 -10px 20px -10px rgba(0, 229, 255, 0.2);
         }
-        
-        .contact-link {
-            font-size: 2rem;
-            font-weight: 300;
-            color: var(--text-primary);
-            border-bottom: 1px solid var(--accent-gold);
-            padding-bottom: 5px;
+        .service-icon {
+            color: var(--accent-cyan);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
         }
-        
-        .contact-link:hover { color: var(--accent-gold); }
+        .service-item h4 { margin-bottom: 15px; font-size: 1.1rem; }
 
         /* --- FOOTER --- */
         footer {
+            background: #050508;
+            padding: 50px 10%;
             text-align: center;
-            padding: 40px;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: var(--text-secondary);
             border-top: 1px solid rgba(255,255,255,0.05);
         }
 
         /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            header { padding: 20px; }
-            nav ul { display: none; } /* Simplificado para mobile */
-            .logo { font-size: 1.2rem; }
+        @media (max-width: 900px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 150px; }
+            .hero-content { margin-bottom: 60px; }
+            .hero-visual { display: none; /* Ocultar el gráfico grande en móvil para espacio */ }
+            h1.hero-title { font-size: 3rem; }
+            nav ul { display: none; } /* Menú simplificado */
+            section { padding: 60px 5%; }
         }
     </style>
 </head>
 <body class="lang-es">
 
     <header>
-        <div class="logo">
-            <div class="logo-icon"></div>
+        <div class="logo-container">
+            <div class="logo-triangle"></div>
             DELPHI
         </div>
         <nav>
             <ul>
-                <li><a href="#about" data-lang="es">Nosotros</a><a href="#about" data-lang="en">About</a></li>
+                <li><a href="#team" data-lang="es">Equipo</a><a href="#team" data-lang="en">Team</a></li>
                 <li><a href="#services" data-lang="es">Servicios</a><a href="#services" data-lang="en">Services</a></li>
-                <li><a href="#contact" data-lang="es">Contacto</a><a href="#contact" data-lang="en">Contact</a></li>
             </ul>
+            <div class="lang-switch" onclick="toggleLanguage()">EN / ES</div>
         </nav>
-        <div class="lang-switch" onclick="toggleLanguage()">EN / ES</div>
     </header>
 
     <section class="hero">
-        <span class="section-title" data-lang="es">Visión & Estructura</span>
-        <span class="section-title" data-lang="en">Vision & Structure</span>
+        <div class="hero-content">
+            <h1 class="hero-title" data-lang="es">
+                ESTRATEGIA.<br>ESTRUCTURA.<br>ASCENSIÓN.
+            </h1>
+            <h1 class="hero-title" data-lang="en">
+                STRATEGY.<br>STRUCTURE.<br>ASCENSION.
+            </h1>
+            
+            <p class="hero-subtitle" data-lang="es">
+                Ingeniería de crecimiento desde el caos.
+            </p>
+            <p class="hero-subtitle" data-lang="en">
+                Engineering growth from chaos.
+            </p>
+            
+            <a href="#contact" class="glow-button" data-lang="es">NUESTRO ENFOQUE</a>
+            <a href="#contact" class="glow-button" data-lang="en">OUR APPROACH</a>
+        </div>
         
-        <h1 data-lang="es">De la complejidad<br>al crecimiento.</h1>
-        <h1 data-lang="en">From complexity<br>to growth.</h1>
-        
-        <p data-lang="es">
-            Somos DELPHI. Un equipo multidisciplinario que fusiona ingeniería financiera, 
-            rigor legal y visión estratégica para transformar problemas complejos en rascacielos corporativos.
-        </p>
-        <p data-lang="en">
-            We are DELPHI. A multidisciplinary team fusing financial engineering, 
-            legal rigor, and strategic vision to transform complex problems into corporate skyscrapers.
-        </p>
-        
-        <a href="#contact" class="cta-button" data-lang="es">Hablemos</a>
-        <a href="#contact" class="cta-button" data-lang="en">Let's Talk</a>
+        <div class="hero-visual">
+             <div class="logo-triangle hero-logo-big"></div>
+        </div>
     </section>
 
-    <section id="about" class="section">
-        <span class="section-title" data-lang="es">Nuestro ADN</span>
-        <span class="section-title" data-lang="en">Our DNA</span>
-        
-        <h2 style="font-size: 2rem; margin-bottom: 20px;" data-lang="es">Ingenieros. Abogados. Financieros.</h2>
-        <h2 style="font-size: 2rem; margin-bottom: 20px;" data-lang="en">Engineers. Lawyers. Financiers.</h2>
-        
-        <p style="color: var(--text-secondary); max-width: 800px;" data-lang="es">
-            No somos consultores tradicionales. Nuestro valor radica en la intersección de disciplinas. 
-            Combinamos la precisión de la ingeniería industrial con la protección del derecho administrativo 
-            y la agudeza de los mercados de capitales.
-        </p>
-        <p style="color: var(--text-secondary); max-width: 800px;" data-lang="en">
-            We are not traditional consultants. Our value lies in the intersection of disciplines. 
-            We combine the precision of industrial engineering with the protection of administrative law 
-            and the sharpness of capital markets.
-        </p>
+    <section id="team">
+        <div class="section-header">
+            <span class="section-label" data-lang="es">NUESTRO ADN</span>
+            <span class="section-label" data-lang="en">OUR DNA</span>
+            <h2 class="section-heading" data-lang="es">La Sinergia DELPHI</h2>
+            <h2 class="section-heading" data-lang="en">The DELPHI Synergy</h2>
+        </div>
 
-        <div class="expertise-grid">
-            <div class="profile-card">
-                <h3 data-lang="es">Marco Legal & Financiero</h3>
-                <h3 data-lang="en">Legal & Financial Framework</h3>
+        <div class="team-grid">
+            <div class="team-card">
+                <h3 data-lang="es">Rigor Legal & Financiero</h3>
+                <h3 data-lang="en">Legal & Financial Rigor</h3>
                 <p data-lang="es">
-                    Socio especializado en Derecho Administrativo y Finanzas. 
-                    Aportamos blindaje contractual y estructuración patrimonial compleja para asegurar que cada movimiento estratégico cumpla con la normativa y maximice el retorno.
+                    Liderado por un Abogado Magíster en Derecho Administrativo y asesor financiero. Aportamos el blindaje contractual, la estructuración de vehículos de inversión y la seguridad jurídica necesaria para operaciones complejas.
                 </p>
                 <p data-lang="en">
-                    Partner specialized in Administrative Law and Finance. 
-                    We provide contractual shielding and complex asset structuring to ensure every strategic move complies with regulations while maximizing returns.
+                    Led by a Lawyer with a Master's in Administrative Law and financial advisor. We provide contractual shielding, investment vehicle structuring, and the legal security needed for complex operations.
                 </p>
             </div>
             
-            <div class="profile-card">
-                <h3 data-lang="es">Ingeniería & Finanzas</h3>
-                <h3 data-lang="en">Engineering & Finance</h3>
+            <div class="team-card">
+                <h3 data-lang="es">Ingeniería de Crecimiento</h3>
+                <h3 data-lang="en">Growth Engineering</h3>
                 <p data-lang="es">
-                    Socio Ingeniero Industrial experto en finanzas corporativas. 
-                    Traducimos el caos operativo en flujos de caja predecibles, modelos de valoración robustos y estrategias de tesorería eficientes.
+                    Liderado por un Ingeniero Industrial especializado en Ventas. Diseñamos la maquinaria comercial y aplicamos metodologías de PMO para asegurar que la estrategia se traduzca en ejecución y revenue.
                 </p>
                 <p data-lang="en">
-                    Industrial Engineer Partner expert in corporate finance. 
-                    We translate operational chaos into predictable cash flows, robust valuation models, and efficient treasury strategies.
+                    Led by an Industrial Engineer specialized in Sales. We design the commercial machinery and apply PMO methodologies to ensure strategy translates into execution and revenue.
                 </p>
             </div>
 
-            <div class="profile-card">
-                <h3 data-lang="es">Expansión & Procesos</h3>
-                <h3 data-lang="en">Expansion & Processes</h3>
+            <div class="team-card">
+                <h3 data-lang="es">Arquitectura Financiera</h3>
+                <h3 data-lang="en">Financial Architecture</h3>
                 <p data-lang="es">
-                    Socio Ingeniero Industrial especializado en Ventas y PMO. 
-                    Diseñamos la maquinaria de crecimiento, optimizando procesos y ejecutando proyectos de expansión con métricas claras.
+                    Liderado por un Ingeniero Industrial experto en Finanzas. Transformamos datos en claridad, optimizando tesorería, modelando flujos de caja y analizando la viabilidad profunda del negocio.
                 </p>
                 <p data-lang="en">
-                    Industrial Engineer Partner specialized in Sales and PMO. 
-                    We design the growth machinery, optimizing processes and executing expansion projects with clear metrics.
+                    Led by an Industrial Engineer expert in Finance. We transform data into clarity, optimizing treasury, modeling cash flows, and analyzing deep business viability.
                 </p>
             </div>
         </div>
     </section>
 
-    <section id="services" class="section">
-        <span class="section-title" data-lang="es">Lo que hacemos</span>
-        <span class="section-title" data-lang="en">What We Do</span>
-        
+    <section id="services" style="background: rgba(255,255,255,0.01);">
+        <div class="section-header">
+            <span class="section-label" data-lang="es">CAPACIDADES</span>
+            <span class="section-label" data-lang="en">CAPABILITIES</span>
+            <h2 class="section-heading" data-lang="es">Soluciones Complejas</h2>
+            <h2 class="section-heading" data-lang="en">Complex Solutions</h2>
+        </div>
+
         <div class="services-grid">
             <div class="service-item">
-                <div class="icon">⟡</div>
-                <h4 data-lang="es">Gestión de Fondos</h4>
-                <h4 data-lang="en">Fund Management</h4>
-                <p data-lang="es">Estructuración y administración de vehículos de inversión. Estrategias de preservación y crecimiento de capital.</p>
-                <p data-lang="en">Structuring and administration of investment vehicles. Capital preservation and growth strategies.</p>
+                <div class="service-icon">◈</div>
+                <h4 data-lang="es">Fondos de Inversión</h4>
+                <h4 data-lang="en">Investment Funds</h4>
+                <p data-lang="es">Estructuración y manejo profesional de vehículos de capital.</p>
+                <p data-lang="en">Structuring and professional management of capital vehicles.</p>
             </div>
             
             <div class="service-item">
-                <div class="icon">∆</div>
-                <h4 data-lang="es">PMO & Estrategia</h4>
-                <h4 data-lang="en">PMO & Strategy</h4>
-                <p data-lang="es">Oficina de Gestión de Proyectos. Ponemos orden, definimos hitos y aseguramos la ejecución impecable.</p>
-                <p data-lang="en">Project Management Office. We bring order, define milestones, and ensure flawless execution.</p>
+                <div class="service-icon">∆</div>
+                <h4 data-lang="es">PMO Estratégica</h4>
+                <h4 data-lang="en">Strategic PMO</h4>
+                <p data-lang="es">Oficina de gestión de proyectos para garantizar la ejecución.</p>
+                <p data-lang="en">Project management office to guarantee execution.</p>
             </div>
             
             <div class="service-item">
-                <div class="icon">⚡</div>
+                <div class="service-icon">⚡</div>
                 <h4 data-lang="es">Tesorería & Cashflow</h4>
                 <h4 data-lang="en">Treasury & Cashflow</h4>
-                <p data-lang="es">Optimización de liquidez. Análisis profundo de flujos de caja y salud financiera operativa.</p>
-                <p data-lang="en">Liquidity optimization. Deep analysis of cash flows and operational financial health.</p>
+                <p data-lang="es">Optimización de liquidez y salud financiera operativa.</p>
+                <p data-lang="en">Liquidity optimization and operational financial health.</p>
             </div>
             
             <div class="service-item">
-                <div class="icon">⚖</div>
+                <div class="service-icon">⚖</div>
                 <h4 data-lang="es">Contratos & Financiación</h4>
                 <h4 data-lang="en">Contracts & Financing</h4>
-                <p data-lang="es">Solución de problemas legales complejos y búsqueda de financiamiento estructurado.</p>
-                <p data-lang="en">Resolution of complex legal problems and structured financing search.</p>
+                <p data-lang="es">Ingeniería legal para cerrar tratos y levantar capital.</p>
+                <p data-lang="en">Legal engineering to close deals and raise capital.</p>
+            </div>
+
+            <div class="service-item">
+                <div class="service-icon">👁</div>
+                <h4 data-lang="es">Análisis de Negocios</h4>
+                <h4 data-lang="en">Business Analysis</h4>
+                <p data-lang="es">Diagnóstico profundo para la toma de decisiones basadas en datos.</p>
+                <p data-lang="en">Deep diagnosis for data-driven decision making.</p>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="section">
-        <div class="contact-box">
-            <h2 style="margin-bottom: 20px;" data-lang="es">¿Listo para estructurar el crecimiento?</h2>
-            <h2 style="margin-bottom: 20px;" data-lang="en">Ready to structure growth?</h2>
-            <p style="margin-bottom: 40px; color: var(--text-secondary);" data-lang="es">
-                Analizamos casos complejos bajo estricta confidencialidad.
-            </p>
-            <p style="margin-bottom: 40px; color: var(--text-secondary);" data-lang="en">
-                We analyze complex cases under strict confidentiality.
-            </p>
-            
-            <a href="mailto:contacto@delphi.com" class="contact-link">contacto@delphi.com</a>
+    <footer id="contact">
+        <div class="logo-container" style="justify-content: center; margin-bottom: 20px; opacity: 0.7;">
+            <div class="logo-triangle" style="transform: scale(0.7);"></div>
+            DELPHI
         </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 DELPHI Strategic Consulting. All Rights Reserved.</p>
+        <p data-lang="es">© 2025 DELPHI. Consultoría Estratégica. Todos los derechos reservados.</p>
+        <p data-lang="en">© 2025 DELPHI. Strategic Consulting. All rights reserved.</p>
+        <p style="margin-top: 10px; color: var(--accent-cyan);">contacto@delphi.com</p>
     </footer>
 
     <script>
         function toggleLanguage() {
             const body = document.body;
+            // Si tiene la clase español, se la quita y pone inglés, y viceversa.
             if (body.classList.contains('lang-es')) {
                 body.classList.remove('lang-es');
                 body.classList.add('lang-en');
