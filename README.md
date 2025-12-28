@@ -1,1 +1,1 @@
-# Delphi2
+# Delphi all rights reserved
