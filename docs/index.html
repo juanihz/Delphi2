@@ -11,14 +11,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        /* --- VARIABLES & ESTÉTICA --- */
+        /* --- VARIABLES & ESTÉTICA EXACTA --- */
         :root {
-            --bg-main: #0a0a0f;
-            --bg-surface: rgba(20, 20, 30, 0.6);
+            --bg-main: #0a0a0f; /* Negro profundo */
+            --bg-surface: rgba(20, 20, 30, 0.6); /* Superficies semitransparentes */
             --text-primary: #ffffff;
             --text-secondary: #a0a0b0;
+            
+            /* Colores de acento vibrantes */
             --accent-cyan: #00E5FF; 
             --accent-orange: #FF8C00;
+            
             --font-title: 'Montserrat', sans-serif;
             --font-body: 'Inter', sans-serif;
         }
@@ -32,16 +35,19 @@
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
-            /* Fondo complejo premium */
+            /* SIMULACIÓN DE FONDO COMPLEJO CON CSS (Luces y Red) */
             background-image: 
+                /* Luces radiales (Cian izquierda, Naranja derecha) */
                 radial-gradient(circle at 20% 30%, rgba(0, 229, 255, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 80% 70%, rgba(255, 140, 0, 0.12) 0%, transparent 50%),
+                /* Patrón sutil de líneas de red */
                 linear-gradient(0deg, rgba(255,255,255,0.02) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
             background-size: 100% 100%, 100% 100%, 100px 100px, 100px 100px;
-            background-attachment: fixed;
+            background-attachment: fixed; /* Efecto parallax suave */
         }
 
+        /* Títulos en mayúsculas y fuertes */
         h1, h2, h3, h4 {
             font-family: var(--font-title);
             text-transform: uppercase;
@@ -62,11 +68,12 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 20px 5%;
+            padding: 25px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 10, 15, 0.85);
+            /* Fondo de cristal esmerilado */
+            background: rgba(10, 10, 15, 0.7);
             backdrop-filter: blur(20px);
             z-index: 1000;
             border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -75,87 +82,93 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             font-family: var(--font-title);
             font-weight: 800;
             font-size: 1.5rem;
-            letter-spacing: 2px;
-            color: #fff;
+            letter-spacing: 3px;
+        }
+
+        /* ESTILOS PARA TU NUEVA IMAGEN DE LOGO (Header y Footer) */
+        .logo-img {
+            width: 55px;  /* Tamaño del logo en la barra */
+            height: auto; 
+            object-fit: contain;
+        }
+
+        .footer-logo-img {
+            width: 45px; /* Ligeramente más pequeño en el footer */
+            opacity: 0.8;
         }
 
         nav ul { display: flex; gap: 30px; align-items: center; }
         nav a { 
-            font-size: 0.8rem; font-weight: 700; color: var(--text-primary); 
-            text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; 
+            font-size: 0.8rem; 
+            font-weight: 700; 
+            color: var(--text-primary); 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
         }
         nav a:hover { opacity: 1; color: var(--accent-cyan); }
 
         .lang-switch {
             border: 1px solid rgba(255,255,255,0.3);
             padding: 8px 18px;
-            font-size: 0.7rem; text-transform: uppercase; font-weight: 700;
-            cursor: pointer; transition: 0.3s; border-radius: 4px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 4px;
         }
         .lang-switch:hover {
-            border-color: var(--accent-cyan); color: var(--accent-cyan);
+            border-color: var(--accent-cyan);
             box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+            color: var(--accent-cyan);
         }
 
-        /* --- LOGO SVG DEFINITIONS --- */
-        /* Esto crea el logo con código, sin imágenes externas */
-        .delphi-logo-svg {
-            filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.6));
+        /* --- HERO SECTION REVISADA (Layout dividido) --- */
+        .hero {
+            min-height: 100vh; /* Ocupa toda la pantalla */
+            display: flex;     /* Usamos Flexbox para dividir izquierda/derecha */
+            align-items: center;
+            justify-content: space-between; /* Separa texto y logo */
+            padding-top: 100px; /* Compensar header */
+            gap: 50px; /* Espacio entre texto y logo */
         }
-        .shape-cyan {
-            stroke: var(--accent-cyan);
-            stroke-width: 8;
-            stroke-linecap: round;
-            fill: none;
+
+        /* Columna Izquierda: Texto */
+        .hero-content { 
+            flex: 1; 
+            max-width: 600px; 
+            z-index: 2; 
         }
-        .shape-orange {
-            stroke: var(--accent-orange);
-            stroke-width: 8;
-            stroke-linecap: round;
-            fill: none;
-            mix-blend-mode: screen; /* Efecto de luz */
-        }
-        
-        /* Tamaños específicos */
-        .logo-header { width: 45px; height: 45px; }
-        .logo-footer { width: 40px; height: 40px; opacity: 0.8; }
-        
-        /* Logo Gigante Hero */
-        .logo-hero-container {
-            width: 100%;
-            max-width: 500px;
+
+        /* Columna Derecha: Logo Grande */
+        .hero-visual {
+            flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: float 6s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
         }
-        .logo-hero {
+
+        /* Estilo del Logo Gigante en el Hero */
+        .hero-logo-big {
             width: 100%;
+            max-width: 550px; /* Tamaño máximo para que no sea excesivo */
             height: auto;
-            filter: drop-shadow(0 0 25px rgba(0, 229, 255, 0.4));
+            /* Efecto de brillo intenso como en la simulación */
+            filter: drop-shadow(0 0 30px rgba(0, 229, 255, 0.3));
+            animation: float 6s ease-in-out infinite; /* Flotación suave */
         }
 
-
-        /* --- HERO SECTION --- */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-top: 100px;
-            gap: 50px;
-        }
-
-        .hero-content { flex: 1; max-width: 600px; z-index: 2; }
-        .hero-visual { flex: 1; display: flex; justify-content: center; z-index: 1; }
-
+        /* Animación suave para que el logo "respire" */
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-15px); }
             100% { transform: translateY(0px); }
         }
 
@@ -163,22 +176,33 @@
             font-size: 4rem;
             line-height: 1.1;
             margin-bottom: 25px;
+            /* Degradado metálico en el texto */
             background: linear-gradient(135deg, #ffffff 0%, #c0c0d0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero-subtitle {
-            font-size: 1.4rem; color: var(--text-secondary);
-            margin-bottom: 50px; font-weight: 300;
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            margin-bottom: 50px;
+            font-weight: 300;
         }
 
+        /* Botón estilo "Neón" */
         .glow-button {
-            display: inline-block; padding: 18px 40px;
-            background: transparent; border: 2px solid var(--accent-cyan);
-            color: var(--text-primary); font-family: var(--font-title);
-            font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
-            font-size: 0.9rem; transition: 0.4s;
+            display: inline-block;
+            padding: 18px 40px;
+            background: transparent;
+            /* Borde degradado simulado */
+            border: 2px solid var(--accent-cyan);
+            color: var(--text-primary);
+            font-family: var(--font-title);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            transition: 0.4s;
             box-shadow: inset 0 0 20px rgba(0, 229, 255, 0.1);
         }
 
@@ -191,9 +215,13 @@
         /* --- SECTIONS --- */
         .section-header { margin-bottom: 70px; }
         .section-label {
-            color: var(--accent-orange); font-family: var(--font-title);
-            font-weight: 700; letter-spacing: 3px; font-size: 0.9rem;
-            display: block; margin-bottom: 15px;
+            color: var(--accent-orange);
+            font-family: var(--font-title);
+            font-weight: 700;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 15px;
             text-shadow: 0 0 10px rgba(255, 140, 0, 0.3);
         }
         h2.section-heading { font-size: 3rem; }
@@ -204,17 +232,21 @@
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
         }
+
         .team-card {
             background: var(--bg-surface);
             border: 1px solid rgba(255,255,255,0.08);
-            padding: 50px 40px; transition: 0.4s;
+            padding: 50px 40px;
+            transition: 0.4s;
             backdrop-filter: blur(10px);
         }
+
         .team-card:hover {
             border-color: var(--accent-orange);
             box-shadow: 0 10px 30px -10px rgba(255, 140, 0, 0.2);
             transform: translateY(-5px);
         }
+        
         .team-card h3 { margin-bottom: 20px; font-size: 1.4rem; }
         .team-card p { color: var(--text-secondary); font-size: 1rem; }
 
@@ -224,10 +256,12 @@
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 30px;
         }
+
         .service-item {
             padding: 40px 30px;
             background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, transparent 100%);
-            border-top: 3px solid rgba(255,255,255,0.1); transition: 0.3s;
+            border-top: 3px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
         }
         .service-item:hover {
             border-color: var(--accent-cyan);
@@ -235,15 +269,20 @@
             background: linear-gradient(180deg, rgba(0, 229, 255, 0.05) 0%, transparent 100%);
         }
         .service-icon {
-            color: var(--accent-cyan); font-size: 2rem; margin-bottom: 25px;
+            color: var(--accent-cyan);
+            font-size: 2rem;
+            margin-bottom: 25px;
             text-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
         }
         .service-item h4 { margin-bottom: 15px; font-size: 1.2rem; }
 
         /* --- FOOTER --- */
         footer {
-            background: rgba(5, 5, 10, 0.8); padding: 80px 10%;
-            text-align: center; font-size: 0.9rem; color: var(--text-secondary);
+            background: rgba(5, 5, 10, 0.8);
+            padding: 80px 10%;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
             border-top: 1px solid rgba(255,255,255,0.08);
         }
 
@@ -251,8 +290,8 @@
         @media (max-width: 900px) {
             .hero { flex-direction: column; text-align: center; padding-top: 140px; gap: 40px; }
             h1.hero-title { font-size: 3rem; }
-            .hero-visual { width: 100%; order: -1; }
-            .logo-hero-container { max-width: 250px; margin: 0 auto; }
+            /* En móvil, el logo va arriba y un poco más pequeño */
+            .hero-visual { width: 100%; max-width: 300px; margin: 0 auto; order: -1; }
             nav ul { display: none; }
             section { padding: 80px 5%; }
             .logo-container { font-size: 1.2rem; }
@@ -263,11 +302,7 @@
 
     <header>
         <div class="logo-container">
-            <svg class="delphi-logo-svg logo-header" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path class="shape-cyan" d="M50 15 L85 85 L15 85 Z" />
-                <path class="shape-orange" d="M50 25 L78 80 L22 80 Z" style="transform-origin: center; transform: rotate(180deg) translateY(-15px) scale(0.9);" />
-                <circle cx="50" cy="50" r="4" fill="white" filter="drop-shadow(0 0 5px white)"/>
-            </svg>
+            <img src="logo-final.png" alt="DELPHI Logo" class="logo-img">
             DELPHI
         </div>
         <nav>
@@ -281,26 +316,30 @@
     </header>
 
     <section class="hero">
+        
         <div class="hero-content">
-            <h1 class="hero-title" data-lang="es">ESTRATEGIA.<br>ESTRUCTURA.<br>ASCENSIÓN.</h1>
-            <h1 class="hero-title" data-lang="en">STRATEGY.<br>STRUCTURE.<br>ASCENSION.</h1>
+            <h1 class="hero-title" data-lang="es">
+                ESTRATEGIA.<br>ESTRUCTURA.<br>ASCENSIÓN.
+            </h1>
+            <h1 class="hero-title" data-lang="en">
+                STRATEGY.<br>STRUCTURE.<br>ASCENSION.
+            </h1>
             
-            <p class="hero-subtitle" data-lang="es">Ingeniería de crecimiento desde el caos.</p>
-            <p class="hero-subtitle" data-lang="en">Engineering growth from chaos.</p>
+            <p class="hero-subtitle" data-lang="es">
+                Ingeniería de crecimiento desde el caos.
+            </p>
+            <p class="hero-subtitle" data-lang="en">
+                Engineering growth from chaos.
+            </p>
             
             <a href="#contact" class="glow-button" data-lang="es">NUESTRO ENFOQUE</a>
             <a href="#contact" class="glow-button" data-lang="en">OUR APPROACH</a>
         </div>
         
         <div class="hero-visual">
-             <div class="logo-hero-container">
-                 <svg class="delphi-logo-svg logo-hero" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path class="shape-cyan" d="M50 10 L90 90 L10 90 Z" />
-                    <path class="shape-orange" d="M50 90 L85 25 L15 25 Z" opacity="0.9" />
-                    <circle cx="50" cy="55" r="3" fill="white" filter="drop-shadow(0 0 10px white)"/>
-                 </svg>
-             </div>
+             <img src="logo-final.png" alt="DELPHI Emblem" class="hero-logo-big">
         </div>
+
     </section>
 
     <section id="team">
@@ -310,24 +349,39 @@
             <h2 class="section-heading" data-lang="es">La Sinergia DELPHI</h2>
             <h2 class="section-heading" data-lang="en">The DELPHI Synergy</h2>
         </div>
+
         <div class="team-grid">
             <div class="team-card">
                 <h3 data-lang="es">Rigor Legal & Financiero</h3>
                 <h3 data-lang="en">Legal & Financial Rigor</h3>
-                <p data-lang="es">Liderado por un Abogado Magíster en Derecho Administrativo y asesor financiero. Blindaje contractual y estructuración compleja.</p>
-                <p data-lang="en">Led by a Lawyer (LL.M.) and financial advisor. Contractual shielding and complex structuring.</p>
+                <p data-lang="es">
+                    Aportamos el blindaje contractual, la estructuración de vehículos de inversión y la seguridad jurídica necesaria para operaciones complejas.
+                </p>
+                <p data-lang="en">
+                    We provide contractual shielding, investment vehicle structuring, and the legal security needed for complex operations.
+                </p>
             </div>
+            
             <div class="team-card">
                 <h3 data-lang="es">Ingeniería de Crecimiento</h3>
                 <h3 data-lang="en">Growth Engineering</h3>
-                <p data-lang="es">Liderado por un Ingeniero Industrial (Ventas/PMO). Maquinaria comercial y procesos de ejecución.</p>
-                <p data-lang="en">Led by an Industrial Engineer (Sales/PMO). Commercial machinery and execution processes.</p>
+                <p data-lang="es">
+                    Diseñamos la maquinaria comercial y los procesos para asegurar que la estrategia se traduzca en ejecución y revenue.
+                </p>
+                <p data-lang="en">
+                    We design the commercial machinery and processes to ensure strategy translates into execution and revenue.
+                </p>
             </div>
+
             <div class="team-card">
                 <h3 data-lang="es">Arquitectura Financiera</h3>
                 <h3 data-lang="en">Financial Architecture</h3>
-                <p data-lang="es">Liderado por un Ingeniero Industrial (Finanzas). Optimización de tesorería y modelado de flujos.</p>
-                <p data-lang="en">Led by an Industrial Engineer (Finance). Treasury optimization and cash flow modeling.</p>
+                <p data-lang="es">
+                    Transformamos datos en claridad, optimizando tesorería, modelando flujos de caja y analizando la viabilidad profunda del negocio.
+                </p>
+                <p data-lang="en">
+                    We transform data into clarity, optimizing treasury, modeling cash flows, and analyzing deep business viability.
+                </p>
             </div>
         </div>
     </section>
@@ -339,44 +393,64 @@
             <h2 class="section-heading" data-lang="es">Soluciones Complejas</h2>
             <h2 class="section-heading" data-lang="en">Complex Solutions</h2>
         </div>
+
         <div class="services-grid">
             <div class="service-item">
                 <div class="service-icon">◈</div>
-                <h4 data-lang="es">Fondos de Inversión</h4><h4 data-lang="en">Investment Funds</h4>
+                <h4 data-lang="es">Fondos de Inversión</h4>
+                <h4 data-lang="en">Investment Funds</h4>
+                <p data-lang="es">Estructuración y manejo profesional de vehículos de capital.</p>
+                <p data-lang="en">Structuring and professional management of capital vehicles.</p>
             </div>
+            
             <div class="service-item">
                 <div class="service-icon">∆</div>
-                <h4 data-lang="es">PMO Estratégica</h4><h4 data-lang="en">Strategic PMO</h4>
+                <h4 data-lang="es">PMO Estratégica</h4>
+                <h4 data-lang="en">Strategic PMO</h4>
+                <p data-lang="es">Oficina de gestión de proyectos para garantizar la ejecución.</p>
+                <p data-lang="en">Project management office to guarantee execution.</p>
             </div>
+            
             <div class="service-item">
                 <div class="service-icon">⚡</div>
-                <h4 data-lang="es">Tesorería & Cashflow</h4><h4 data-lang="en">Treasury & Cashflow</h4>
+                <h4 data-lang="es">Tesorería & Cashflow</h4>
+                <h4 data-lang="en">Treasury & Cashflow</h4>
+                <p data-lang="es">Optimización de liquidez y salud financiera operativa.</p>
+                <p data-lang="en">Liquidity optimization and operational financial health.</p>
             </div>
+            
             <div class="service-item">
                 <div class="service-icon">⚖</div>
-                <h4 data-lang="es">Contratos & Financiación</h4><h4 data-lang="en">Contracts & Financing</h4>
+                <h4 data-lang="es">Contratos & Financiación</h4>
+                <h4 data-lang="en">Contracts & Financing</h4>
+                <p data-lang="es">Ingeniería legal para cerrar tratos y levantar capital.</p>
+                <p data-lang="en">Legal engineering to close deals and raise capital.</p>
             </div>
+
             <div class="service-item">
                 <div class="service-icon">👁</div>
-                <h4 data-lang="es">Análisis de Negocios</h4><h4 data-lang="en">Business Analysis</h4>
+                <h4 data-lang="es">Análisis de Negocios</h4>
+                <h4 data-lang="en">Business Analysis</h4>
+                <p data-lang="es">Diagnóstico profundo para la toma de decisiones basadas en datos.</p>
+                <p data-lang="en">Deep diagnosis for data-driven decision making.</p>
             </div>
              <div class="service-item">
                 <div class="service-icon">🧩</div>
-                <h4 data-lang="es">Resolución de Problemas</h4><h4 data-lang="en">Problem Solving</h4>
+                <h4 data-lang="es">Resolución de Problemas</h4>
+                <h4 data-lang="en">Complex Problem Solving</h4>
+                <p data-lang="es">Abordaje multidisciplinario para situaciones críticas.</p>
+                <p data-lang="en">Multidisciplinary approach for critical situations.</p>
             </div>
         </div>
     </section>
 
     <footer id="contact">
         <div class="logo-container" style="justify-content: center; margin-bottom: 30px; opacity: 0.8;">
-            <svg class="delphi-logo-svg logo-footer" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path class="shape-cyan" d="M50 15 L85 85 L15 85 Z" stroke-width="6" />
-                <path class="shape-orange" d="M50 25 L78 80 L22 80 Z" stroke-width="6" style="transform-origin: center; transform: rotate(180deg) translateY(-10px) scale(0.9);" />
-            </svg>
+             <img src="logo-final.png" alt="DELPHI Logo" class="logo-img footer-logo-img">
             DELPHI
         </div>
-        <p data-lang="es" style="margin-bottom: 10px;">© 2025 DELPHI. Consultoría Estratégica.</p>
-        <p data-lang="en" style="margin-bottom: 10px;">© 2025 DELPHI. Strategic Consulting.</p>
+        <p data-lang="es" style="margin-bottom: 10px;">© 2025 DELPHI. Consultoría Estratégica. Todos los derechos reservados.</p>
+        <p data-lang="en" style="margin-bottom: 10px;">© 2025 DELPHI. Strategic Consulting. All rights reserved.</p>
         <a href="mailto:contacto@delphi.com" style="color: var(--accent-cyan); font-weight: 700; letter-spacing: 1px;">contacto@delphi.com</a>
     </footer>
 
@@ -384,9 +458,11 @@
         function toggleLanguage() {
             const body = document.body;
             if (body.classList.contains('lang-es')) {
-                body.classList.remove('lang-es'); body.classList.add('lang-en');
+                body.classList.remove('lang-es');
+                body.classList.add('lang-en');
             } else {
-                body.classList.remove('lang-en'); body.classList.add('lang-es');
+                body.classList.remove('lang-en');
+                body.classList.add('lang-es');
             }
         }
     </script>
