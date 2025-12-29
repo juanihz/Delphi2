@@ -13,10 +13,10 @@
     <style>
         /* --- VARIABLES & ESTÉTICA PREMIUM --- */
         :root {
-            --bg-main: #030308; /* Negro azulado muy profundo */
-            --bg-surface: rgba(20, 25, 40, 0.5); /* Superficies de cristal oscuro */
+            --bg-main: #030308;
+            --bg-surface: rgba(15, 20, 30, 0.7); /* Tarjetas más oscuras para contraste */
             --text-primary: #ffffff;
-            --text-secondary: #a0a0b0;
+            --text-secondary: #b0b0c0;
             
             --accent-cyan: #00E5FF; 
             --accent-orange: #FF8C00;
@@ -35,33 +35,15 @@
             line-height: 1.6;
             overflow-x: hidden;
             
-            /* --- FONDO DE NODOS COMPLEJO (REDISEÑADO) --- */
-            background-image: 
-                /* 1. Luces Nebulares Intensas (Cian abajo-izq, Naranja arriba-der) */
-                radial-gradient(at 15% 85%, rgba(0, 229, 255, 0.2) 0%, transparent 55%),
-                radial-gradient(at 85% 15%, rgba(255, 140, 0, 0.18) 0%, transparent 55%),
-                
-                /* 2. Capas de "Estrellas/Nodos" (Puntos brillantes dispersos) */
-                radial-gradient(white, rgba(255,255,255,0.15) 1px, transparent 2px),
-                radial-gradient(white, rgba(255,255,255,0.08) 1px, transparent 3px),
-                
-                /* 3. LA RED COMPLEJA (Líneas interconectadas en ángulos) */
-                /* Usamos repeating-linear-gradient en varios ángulos para crear la malla */
-                repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(255, 255, 255, 0.03) 50px),
-                repeating-linear-gradient(60deg, transparent, transparent 49px, rgba(255, 255, 255, 0.03) 50px),
-                repeating-linear-gradient(120deg, transparent, transparent 49px, rgba(255, 255, 255, 0.03) 50px);
-            
-            background-size: 
-                100% 100%, 100% 100%, /* Luces */
-                400px 400px, 250px 250px, /* Estrellas */
-                200px 200px, 200px 200px, 200px 200px; /* Red de líneas */
-                
-            background-position: 
-                0 0, 0 0,
-                0 0, 50px 50px,
-                0 0, 0 0, 0 0;
-                
-            background-attachment: fixed; /* Efecto parallax */
+            /* --- FONDO DE IMAGEN REAL --- */
+            /* Usamos la imagen generada para la textura compleja */
+            background-image: url('bg-nodes.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            /* Capa oscura encima para que el texto sea legible */
+            background-blend-mode: overlay;
+            background-color: rgba(3, 3, 8, 0.7); 
         }
 
         h1, h2, h3, h4 {
@@ -73,7 +55,7 @@
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
-        section { padding: 120px 10%; position: relative; z-index: 1; }
+        section { padding: 120px 8%; position: relative; z-index: 1; }
 
         /* --- UTILIDADES --- */
         body.lang-es [data-lang="en"] { display: none !important; }
@@ -87,12 +69,12 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 30px 6%; /* Espaciado generoso como en la referencia */
+            padding: 30px 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: transparent; /* Sin fondo */
-            border: none; /* Sin borde */
+            background: transparent;
+            border: none;
             z-index: 1000;
         }
 
@@ -107,22 +89,21 @@
         }
 
         .logo-img {
-            width: 50px;
+            width: 45px;
             height: auto; 
             object-fit: contain;
         }
 
         nav ul { display: flex; gap: 40px; align-items: center; }
         nav a { 
-            font-size: 0.8rem; 
+            font-size: 0.75rem; 
             font-weight: 700; 
             color: var(--text-primary); 
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            opacity: 0.8;
-            text-shadow: 0 0 5px rgba(0,0,0,0.3);
+            opacity: 0.9;
         }
-        nav a:hover { opacity: 1; color: var(--accent-cyan); text-shadow: 0 0 15px rgba(0, 229, 255, 0.5); }
+        nav a:hover { opacity: 1; color: var(--accent-cyan); }
 
         .lang-switch {
             border: 1px solid rgba(255,255,255,0.3);
@@ -135,7 +116,6 @@
         }
         .lang-switch:hover {
             border-color: var(--accent-cyan);
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
             color: var(--accent-cyan);
         }
 
@@ -162,17 +142,16 @@
             align-items: center;
             position: relative;
             z-index: 1;
-            /* Un poco de resplandor detrás del logo principal */
         }
 
         /* Logo Gigante con Efecto Luz Intenso */
         .hero-logo-big {
             width: 100%;
-            max-width: 600px;
+            max-width: 580px;
             height: auto;
-            /* Fusión y brillo intenso para igualar la referencia */
             mix-blend-mode: screen; 
-            filter: drop-shadow(0 0 40px rgba(0, 229, 255, 0.3)); 
+            /* Brillo intenso dual (cian y naranja) */
+            filter: drop-shadow(0 0 30px rgba(0, 229, 255, 0.4)) drop-shadow(0 0 50px rgba(255, 140, 0, 0.2)); 
             animation: float 8s ease-in-out infinite;
         }
 
@@ -186,11 +165,11 @@
             font-size: 4.2rem;
             line-height: 1.1;
             margin-bottom: 30px;
-            /* Degradado metálico sutil */
-            background: linear-gradient(135deg, #ffffff 20%, #b0b0c0 100%);
+            background: linear-gradient(135deg, #ffffff 30%, #a0a0b0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+            /* Sombra sutil para despegar del fondo complejo */
+            text-shadow: 0 5px 20px rgba(0,0,0,0.8);
         }
 
         .hero-subtitle {
@@ -201,11 +180,14 @@
             letter-spacing: 0.5px;
         }
 
-        /* Botón Premium con Borde Degradado */
+        /* --- BOTÓN ESTILO CONTORNO BRILLANTE (CORREGIDO) --- */
         .glow-button {
             display: inline-block;
-            padding: 18px 38px;
-            position: relative;
+            padding: 16px 36px;
+            /* Fondo transparente */
+            background: transparent;
+            /* Borde fino cian */
+            border: 1px solid var(--accent-cyan);
             color: var(--text-primary);
             font-family: var(--font-title);
             font-weight: 700;
@@ -213,25 +195,17 @@
             letter-spacing: 2px;
             font-size: 0.85rem;
             transition: 0.4s;
-            background-clip: padding-box;
-            border: 2px solid transparent;
-            border-radius: 2px;
-        }
-        
-        /* Truco para el borde degradado exacto de la referencia */
-        .glow-button::before {
-            content: '';
-            position: absolute;
-            top: 0; right: 0; bottom: 0; left: 0;
-            z-index: -1;
-            margin: -2px;
-            border-radius: inherit;
-            background: linear-gradient(to right, var(--accent-cyan), var(--accent-orange));
+            /* Resplandor dual sutil en estado normal */
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.3), inset 0 0 10px rgba(0, 229, 255, 0.1);
+            text-shadow: 0 0 5px rgba(255,255,255,0.3);
         }
 
         .glow-button:hover {
-            box-shadow: 0 0 30px rgba(0, 229, 255, 0.4);
+            /* Relleno sutil y resplandor intenso al pasar el mouse */
             background: rgba(0, 229, 255, 0.1);
+            box-shadow: 0 0 40px rgba(0, 229, 255, 0.6), 0 0 20px rgba(255, 140, 0, 0.4);
+            text-shadow: 0 0 10px rgba(255,255,255,0.8);
+            border-color: #fff;
         }
 
         /* --- SECTIONS GENERIC --- */
@@ -244,9 +218,9 @@
             font-size: 0.85rem;
             display: block;
             margin-bottom: 15px;
-            text-shadow: 0 0 15px rgba(255, 140, 0, 0.6);
+            text-shadow: 0 0 15px rgba(255, 140, 0, 0.8);
         }
-        h2.section-heading { font-size: 3rem; text-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        h2.section-heading { font-size: 3rem; text-shadow: 0 5px 20px rgba(0,0,0,0.8); }
 
         /* --- TEAM GRID --- */
         .team-grid {
@@ -257,15 +231,16 @@
 
         .team-card {
             background: var(--bg-surface);
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
             padding: 50px 40px;
             transition: 0.4s;
-            backdrop-filter: blur(15px); /* Más blur para efecto cristal */
+            backdrop-filter: blur(20px); /* Efecto cristal fuerte */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
         .team-card:hover {
             border-color: var(--accent-orange);
-            box-shadow: 0 15px 40px -10px rgba(255, 140, 0, 0.2);
+            box-shadow: 0 20px 50px -10px rgba(255, 140, 0, 0.3);
             transform: translateY(-7px);
         }
         
@@ -281,25 +256,27 @@
 
         .service-item {
             padding: 40px 30px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.01) 0%, transparent 100%);
-            border-top: 2px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.02);
+            border-top: 1px solid rgba(255,255,255,0.1);
             transition: 0.3s;
+            backdrop-filter: blur(5px);
         }
         .service-item:hover {
             border-color: var(--accent-cyan);
-            box-shadow: 0 -15px 30px -15px rgba(0, 229, 255, 0.25);
+            box-shadow: 0 -10px 40px -10px rgba(0, 229, 255, 0.3);
+            background: rgba(0, 229, 255, 0.05);
         }
         .service-icon {
             color: var(--accent-cyan);
             font-size: 2rem;
             margin-bottom: 25px;
-            text-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+            text-shadow: 0 0 20px rgba(0, 229, 255, 0.7);
         }
         .service-item h4 { margin-bottom: 15px; font-size: 1.2rem; }
 
         /* --- FOOTER --- */
         footer {
-            background: rgba(3, 3, 5, 0.7);
+            background: rgba(3, 3, 5, 0.8);
             padding: 80px 10%;
             text-align: center;
             font-size: 0.9rem;
@@ -314,8 +291,8 @@
             h1.hero-title { font-size: 3.2rem; }
             .hero-visual { width: 100%; max-width: 350px; margin: 0 auto; order: -1; }
             nav ul { display: none; }
-            section { padding: 80px 5%; }
-            header { padding: 20px 5%; background: rgba(10,10,15,0.8); backdrop-filter: blur(10px); } /* Fondo en móvil para legibilidad */
+            section { padding: 80px 6%; }
+            header { padding: 20px 5%; }
         }
     </style>
 </head>
